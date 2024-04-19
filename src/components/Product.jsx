@@ -1,28 +1,37 @@
+"use client";
+import { ADD_TO_CART } from "@/redux/cartSlice";
 import { Spinner } from "flowbite-react";
+import { useAmp } from "next/amp";
 import React, { Suspense } from "react";
 import {
   AiOutlineEye,
   AiOutlineHeart,
   AiOutlineShopping,
 } from "react-icons/ai";
+import { useDispatch } from "react-redux";
 
 const Product = ({ item }) => {
-  if (item) {
-    return (
+  const dispatch = useDispatch();
+
+  return (
+    <Suspense fallback={<Spinner size={"xl"} />}>
       <div className="flex flex-col p-2 relative ">
         <div className="w-full h-[150px] lg:h-[250px] md:h-[250px] bg-gray-100 m-auto relative  ">
           <div className="absolute right-1 top-1 bottom-1 flex flex-col  justify-between h-full">
             <div className=" flex flex-col gap-2">
-              <div className="w-[35px] h-[35px] bg-white rounded-full hover:bg-orange-500 hover:text-white   flex items-center justify-center">
+              <button className="w-[35px] h-[35px] bg-white rounded-full hover:bg-orange-500 hover:text-white   flex items-center justify-center">
                 <AiOutlineHeart size={20} />
-              </div>
-              <div className="w-[35px] h-[35px] bg-white rounded-full hover:bg-orange-500 hover:text-white  flex items-center justify-center">
+              </button>
+              <button className="w-[35px] h-[35px] bg-white rounded-full hover:bg-orange-500 hover:text-white  flex items-center justify-center">
                 <AiOutlineEye size={20} />
-              </div>
+              </button>
             </div>
-            <div className="w-[35px] h-[35px] bg-black text-white hover:bg-orange-500 hover:text-white  rounded-full  flex items-center justify-center">
+            <button
+              onClick={() => dispatch(ADD_TO_CART(item))}
+              className="w-[35px] h-[35px] bg-black text-white hover:bg-orange-500 hover:text-white  rounded-full  flex items-center justify-center"
+            >
               <AiOutlineShopping size={20} />
-            </div>
+            </button>
           </div>
           <img
             className="lg:w-[200px] md:w-[200px] w-full m-auto h-[140px] lg:h-[200px] md:h-[200px] "
@@ -44,9 +53,8 @@ const Product = ({ item }) => {
           <h4 className="text-sm">${item?.price}</h4>
         </div>
       </div>
-    );
-  }
-  return <Suspense fallback={<Spinner size={"lg"} />}></Suspense>;
+    </Suspense>
+  );
 };
 
 export default Product;

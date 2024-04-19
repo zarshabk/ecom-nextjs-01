@@ -7,6 +7,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import Cart from "./Cart";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +30,9 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  console.log(scroll);
+
+  const { cart } = useSelector((state) => state.cart);
+
   return (
     <>
       <header
@@ -63,7 +66,7 @@ const Header = () => {
             >
               <AiOutlineShoppingCart size={25} />
               <span className="absolute w-[20px] h-[20px] text-[12px] p-[4px] bg-black text-white flex justify-center items-center rounded-full">
-                2
+                {cart?.length}
               </span>
             </button>
 

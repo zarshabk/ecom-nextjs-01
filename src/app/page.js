@@ -8,7 +8,9 @@ import {
 } from "react-icons/ai";
 
 const getData = async () => {
-  const resp = await fetch("https://dummyjson.com/products");
+  const resp = await fetch("https://dummyjson.com/products", {
+    cache: "no-cache",
+  });
   const result = await resp.json();
   return result;
 };
