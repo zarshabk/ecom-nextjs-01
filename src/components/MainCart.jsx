@@ -37,7 +37,7 @@ const MainCart = () => {
           <tbody>
             {cart.map((item, i) => {
               return (
-                <tr key={i + 1}>
+                <tr key={i + 1} className="border-b-[1px] border-gray-200 p-5">
                   <td>{i + 1}</td>
                   <td>
                     <img
