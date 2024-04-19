@@ -5,12 +5,12 @@ import { Provider } from "react-redux";
 import Header from "./Header";
 import { Footer } from "flowbite-react";
 
-const LayoutComp = ({ children }) => {
+const LayoutComp = ({ pages }) => {
   return (
     <Provider store={store}>
       <Header />
       <main className="container w-[98%] lg:w-[80%] md:w-[90%] m-auto">
-        {children}
+        {pages}
       </main>
       <Footer />
     </Provider>
